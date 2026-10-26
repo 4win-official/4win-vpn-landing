@@ -1,106 +1,186 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4Win VPN | اینترنت آزاد و امن</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- فونت فارسی وزیرمتن -->
-    <link href="https://cdn.fontcdn.ir/Font/Persian/Vazirmatn/Vazirmatn.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4win VPN | کلاینت اندروید با Xray، Psiphon، WARP، OpenVPN و Mix</title>
+<meta name="description" content="4win VPN یک کلاینت VPN اندروید با هشت روش اتصال مستقل (Xray، Psiphon، WARP، OpenVPN، SSTP، DNS، Proxy، Slow DNS) و حالت بتای Mix برای اتصال چندمرحله‌ای.">
+<meta name="theme-color" content="#090a1c">
+<meta property="og:title" content="4win VPN">
+<meta property="og:description" content="هشت روش اتصال، یک اپ. به‌علاوه Mix: زنجیره‌ای از چند پروتکل.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%238b6cff'/><text x='50' y='68' font-size='56' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='900'>4</text></svg>">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="bgfx"></div>
 
-    <!-- هدر سایت -->
-    <header>
-        <div class="container header-content">
-            <div class="logo">
-                <img src="logo.png" alt="4Win VPN Logo" id="logo-img" onerror="this.style.display='none'">
-                <span>4Win VPN</span>
-            </div>
-            <nav>
-                <a href="#features">امکانات</a>
-                <a href="#methods">روش‌های اتصال</a>
-                <a href="#download" class="btn-download-nav">دانلود</a>
-            </nav>
-        </div>
-    </header>
+<nav><div class="wrap">
+  <a class="logo" href="#top"><i>4</i>4win VPN</a>
+  <div class="links"><a href="#protocols">پروتکل‌ها</a><a href="#mix">Mix</a><a href="#features">امکانات</a><a href="#install">نصب</a><a href="#faq">سؤالات</a></div>
+  <a class="btn pri sm" href="https://github.com/4win-official/4win-VPN-Source/releases/download/v1.4.9/4winVPN_v1.4.9_universal.apk">دانلود APK</a>
+</div></nav>
 
-    <!-- بخش اصلی (Hero) -->
-    <section class="hero">
-        <div class="container">
-            <div class="badge">نسخه 1.4.9 | سازگار با اندروید 7.0+</div>
-            <h1>اینترنت آزاد، پرسرعت و امن</h1>
-            <p>با 4Win VPN بدون محدودیت به تمام دنیا متصل شوید. مجهز به ۸ روش اتصال قدرتمند، حالت میکس (Mix) و رمزنگاری پیشرفته.</p>
-            <div class="hero-buttons">
-                <a href="https://github.com/4win-official/4win-VPN-Source/releases/download/v1.4.9/4winVPN_v1.4.9_universal.apk" class="btn-primary large">📥 دانلود مستقیم (APK)</a>
-                <a href="https://github.com/4win-official/4win-VPN-Source" target="_blank" class="btn-secondary">مشاهده سورس کد</a>
-            </div>
-        </div>
-    </section>
+<header class="hero" id="top"><div class="wrap">
+  <div>
+    <span class="tag"><b></b>نسخه ۱.۴.۹ برای اندروید</span>
+    <h1>هر شبکه‌ای،<br><span>روش اتصال خودش.</span></h1>
+    <p class="lead">4win VPN هشت روش اتصال مستقل را در یک اپ جمع کرده؛ از Xray و Psiphon تا WARP و Slow DNS. وقتی یک روش روی شبکه‌تان کار نکرد، بدون عوض‌کردن اپ سراغ بعدی می‌روید. اگر هم لازم شد، چند روش را با <b>Mix</b> پشت هم زنجیر می‌کنید.</p>
+    <div class="cta">
+      <a class="btn pri" href="https://github.com/4win-official/4win-VPN-Source/releases/download/v1.4.9/4winVPN_v1.4.9_universal.apk">⬇ دانلود 4win VPN</a>
+      <a class="btn" href="https://github.com/4win-official/4win-VPN-Source">سورس در گیت‌هاب</a>
+    </div>
+    <div class="meta"><span>اندروید ۷.۰ و بالاتر</span><span>APK یونیورسال (۴ معماری)</span><span>به‌روزرسانی داخل اپ</span></div>
+  </div>
+  <div class="stage" id="stage">
+    <div class="float f1">تأخیر سرور <b id="ping">—</b></div>
+    <div class="float f2">حالت <b>VPN</b> یا <b>پروکسی محلی</b></div>
+    <div class="phone"><div class="scr" id="scr">
+      <div class="sbar"><span>4win VPN</span><span id="proto">Xray</span></div>
+      <div class="pw"><i class="ring"></i><i class="ring"></i><button class="pbtn" id="pbtn" aria-label="اتصال یا قطع (نمایش نمونه)">⏻</button></div>
+      <div class="st" id="st">قطع</div>
+      <div class="sub" id="sub">برای دیدن نمونه لمس کنید</div>
+      <div class="row"><span>روش اتصال</span><em id="pn">Xray</em></div>
+      <div class="row"><span>تقسیم تونل</span><em>به‌ازای هر برنامه</em></div>
+      <div class="mini"><b>Xray</b><b>WARP</b><b>Psiphon</b><b>OpenVPN</b><b>SSTP</b><b>Proxy</b></div>
+    </div></div>
+  </div>
+</div></header>
 
-    <!-- بخش روش‌های اتصال -->
-    <section id="methods" class="methods">
-        <div class="container">
-            <h2>۸ روش اتصال قدرتمند</h2>
-            <p class="section-desc">انتخاب با شماست؛ از پروتکل‌های مدرن تا روش‌های دور زدن فیلترینگ.</p>
-            <div class="methods-grid">
-                <div class="method-card"><h3>Xray</h3><p>اتصال از طریق هسته Xray با پشتیبانی از VLESS, VMess, Trojan و Shadowsocks.</p></div>
-                <div class="method-card"><h3>Psiphon</h3><p>تونل زنی Psiphon با انتخاب خروجی خودکار و قابلیت Kill Switch.</p></div>
-                <div class="method-card"><h3>Cloudflare WARP</h3><p>اتصال به WARP با استفاده از داده‌های WireGuard اختصاصی اپ.</p></div>
-                <div class="method-card"><h3>OpenVPN</h3><p>اتصال با ایمپورت پروفایل‌های .ovpn و پشتیبانی از TCP/UDP.</p></div>
-                <div class="method-card"><h3>SSTP</h3><p>پروتکل امن Socket Tunneling با پشتیبانی از سرورهای سفارشی.</p></div>
-                <div class="method-card"><h3>DNS Changer</h3><p>تغییر خودکار DNS برای دسترسی به سایت‌های تحریم شده.</p></div>
-                <div class="method-card"><h3>Proxy</h3><p>اتصال از طریق پروکسی محلی روی 127.0.0.1:4444.</p></div>
-                <div class="method-card"><h3>Slow DNS</h3><p>دور زدن فیلترینگ با استفاده از تکنیک Slow DNS.</p></div>
-            </div>
-            <div class="mix-highlight">
-                <h3>🚀 حالت بتا: Mix (چند مرحله‌ای)</h3>
-                <p>ترکیب هوشمند پروتکل‌ها و DNS بلوک‌ها به ترتیب دلخواه برای دور زدن پیشرفته‌ترین فیلترینگ‌ها.</p>
-            </div>
-        </div>
-    </section>
+<div class="mq" aria-hidden="true"><div>
+  <span>Xray</span><span>Psiphon</span><span>Cloudflare WARP</span><span>OpenVPN</span><span>SSTP</span><span>DNS Changer</span><span>Proxy</span><span>Slow DNS</span><span>Mix</span>
+  <span>Xray</span><span>Psiphon</span><span>Cloudflare WARP</span><span>OpenVPN</span><span>SSTP</span><span>DNS Changer</span><span>Proxy</span><span>Slow DNS</span><span>Mix</span>
+</div></div>
 
-    <!-- بخش امکانات -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2>چرا 4Win VPN؟</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>🔒 امنیت و رمزنگاری</h3>
-                    <p>حفاظت از داده‌ها با استانداردهای رمزنگاری پیشرفته و بدون ثبت لاگ (No-Log).</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🎨 تم‌های متنوع</h3>
-                    <p>ظاهر اپ را با تم‌های Liquid Glass, Pixel, Rain, Snow و غیره شخصی‌سازی کنید.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>📊 آمار و لاگ</h3>
-                    <p>نمایش وضعیت اتصال، آمار ترافیک و لاگ‌های دقیق اتصال برای عیب‌یابی.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>⚙️ Split Tunneling</h3>
-                    <p>انتخاب کنید کدام اپ‌ها از VPN استفاده کنند و کدام‌ها نه.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="protocols"><div class="wrap">
+  <h2>هشت روش اتصال، هر کدام مستقل</h2>
+  <p class="lead">هر روش صفحه و تنظیمات خودش را دارد. یکی را انتخاب کنید و وصل شوید.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="panel" id="panel" role="tabpanel"></div>
+</div></section>
 
-    <!-- بخش دانلود -->
-    <section id="download" class="download">
-        <div class="container">
-            <h2>همین حالا شروع کنید</h2>
-            <p>آخرین نسخه اپلیکیشن را دانلود کنید و به دنیای آزاد اینترنت متصل شوید.</p>
-            <a href="https://github.com/4win-official/4win-VPN-Source/releases/download/v1.4.9/4winVPN_v1.4.9_universal.apk" class="btn-primary large">📥 دانلود 4Win VPN (اندروید)</a>
-            <p class="small-note">حداقل نسخه مورد نیاز: اندروید 7.0 (API 24)</p>
-        </div>
-    </section>
+<section class="mix" id="mix"><div class="wrap mixgrid">
+  <div>
+    <h2>Mix<span class="beta">بتا</span></h2>
+    <p class="lead">یک اتصال چندمرحله‌ای. اپ فقط یک رابط VPN اندروید می‌سازد و ترافیک را به ترتیبی که شما چیده‌اید از میان بلوک‌ها عبور می‌دهد. بلوک‌ها می‌توانند Xray، Proxy، WARP، SSTP، OpenVPN، Psiphon یا DNS باشند و یک زنجیره تا ۵۰ بلوک جا دارد.</p>
+    <p class="lead" style="margin-top:14px">قبل از اعلام موفقیت، کل زنجیره تست می‌شود. هیچ مرحله‌ای بی‌صدا حذف نمی‌شود و اتصال مستقیم جایگزین نمی‌شود.</p>
+  </div>
+  <div class="lab">
+    <p class="h">روی پروتکل‌ها بزنید تا زنجیره بسازید. روی هر بلوک بزنید تا حذف شود.</p>
+    <div class="chips" id="chips"></div>
+    <div class="chain" id="chain"></div>
+    <button class="btn pri sm" id="run">تست زنجیره (نمونه)</button>
+    <p class="out" id="out" style="margin-top:14px"></p>
+  </div>
+</div></section>
 
-    <!-- فوتر -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 4Win VPN. تمامی حقوق محفوظ است.</p>
-        </div>
-    </footer>
+<section id="features"><div class="wrap">
+  <h2>چیزهایی که واقعاً در اپ هست</h2>
+  <div class="bento">
+    <div class="cell c4"><span class="ico">🔗</span><h3>لینک و سابسکریپشن</h3><p>لینک‌های VLESS، VMess، Trojan و Shadowsocks را وارد کنید یا یک لینک سابسکریپشن بدهید تا سرورها در گروه‌های نام‌دار مرتب شوند. با انتخاب گروه، اپ سرورها را تست می‌کند و سرور سالم با تأخیر کمتر را برمی‌دارد.</p>
+      <div class="code">vless:// &nbsp; vmess:// &nbsp; trojan:// &nbsp; ss:// &nbsp; socks5:// &nbsp; http://</div></div>
+    <div class="cell c2"><span class="ico">📱</span><h3>تقسیم تونل</h3><p>انتخاب کنید کدام برنامه‌ها از VPN رد شوند یا نشوند. بعد از تغییر انتخاب، یک‌بار دوباره وصل شوید.</p></div>
+    <div class="cell c2"><span class="ico">🛡️</span><h3>Kill Switch برای Psiphon</h3><p>اگر Psiphon در حالت مستقل قطع شود، اپ ترافیک را مسدود نگه می‌دارد و دوباره تلاش می‌کند.</p></div>
+    <div class="cell c2"><span class="ico">🔌</span><h3>پروکسی محلی</h3><p>Xray، Proxy و WARP می‌توانند به‌جای VPN سراسری، یک پروکسی روی <b dir="ltr">127.0.0.1:4444</b> باز کنند.</p></div>
+    <div class="cell c2"><span class="ico">📊</span><h3>آمار و لاگ</h3><p>وضعیت اتصال، حجم ترافیک و لاگ اتصال را داخل اپ ببینید.</p></div>
+    <div class="cell c3"><span class="ico">🔎</span><h3>اسکنر DNS</h3><p>سرورهای DNS را اسکن و از لیست انتخاب کنید. برای Slow DNS هم اسکنر هست؛ نتیجه‌اش فقط کاندیدا است و جای تأیید تونل را نمی‌گیرد.</p></div>
+    <div class="cell c3"><span class="ico">🔄</span><h3>به‌روزرسانی داخل اپ</h3><p>اپ آخرین نسخه گیت‌هاب را بررسی می‌کند، APK را دانلود می‌کند و نصب‌کننده اندروید را باز می‌کند.</p></div>
+  </div>
+  <h2 style="margin-top:80px">ظاهر را عوض کنید</h2>
+  <p class="lead">نُه تم داخل تنظیمات اپ.</p>
+  <div class="themes">
+    <div class="th" style="background:linear-gradient(135deg,#2b2f4a,#5b6190)">سیستم</div>
+    <div class="th" style="background:linear-gradient(135deg,#7ad7ff88,#b69cff88);backdrop-filter:blur(6px)">Liquid Glass</div>
+    <div class="th" style="background:linear-gradient(135deg,#1a73e8,#34a853)">Pixel</div>
+    <div class="th" style="background:linear-gradient(135deg,#ff8fc2,#ff5c9a)">صورتی</div>
+    <div class="th" style="background:linear-gradient(135deg,#2c4a6b,#1a2a44)">باران</div>
+    <div class="th" style="background:linear-gradient(135deg,#dff3ff,#8fb8d8);color:#102;text-shadow:none">برف</div>
+    <div class="th" style="background:linear-gradient(135deg,#ffcf5c,#ff8a3d)">تابستان</div>
+    <div class="th" style="background:linear-gradient(135deg,#c2571a,#7a2e12)">پاییز</div>
+    <div class="th" style="background:linear-gradient(135deg,#ffb86b,#a86bff)">گربه 🐱</div>
+  </div>
+</div></section>
 
+<section id="install"><div class="wrap">
+  <h2>نصب در سه قدم</h2>
+  <div class="steps">
+    <div class="step"><h3>دانلود</h3><p>فایل APK یونیورسال را از دکمه پایین بگیرید. روی تمام معماری‌های رایج اندروید کار می‌کند.</p></div>
+    <div class="step"><h3>اجازه نصب</h3><p>هنگام باز کردن فایل، اندروید اجازه نصب از این مرورگر یا فایل‌منیجر را می‌خواهد؛ آن را فعال کنید.</p></div>
+    <div class="step"><h3>انتخاب روش</h3><p>اپ را باز کنید، راهنمای اولیه را ببینید، یک روش اتصال انتخاب کنید و وصل شوید.</p></div>
+  </div>
+  <div class="note">
+    <h3>قبل از استفاده بدانید</h3>
+    <ul>
+      <li>فقط نسخه اندروید پشتیبانی می‌شود.</li>
+      <li>Kill Switch فقط برای Psiphon مستقل است و برای بقیه روش‌ها و Mix کار نمی‌کند.</li>
+      <li>Mix هنوز بتا است و هر ترکیبی روی هر شبکه‌ای کار نمی‌کند.</li>
+      <li>«Secret Text» فقط برای اشتراک‌گذاری ساده است و رمزنگاری امن نیست. رمز عبور یا کلید خصوصی را با آن نفرستید.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <h2>سؤالات پرتکرار</h2>
+  <details><summary>کدام روش را انتخاب کنم؟</summary><p>اگر لینک Xray یا سابسکریپشن دارید با Xray شروع کنید. برای شروع سریع بدون تنظیم، WARP و Psiphon را امتحان کنید. هر شبکه رفتار متفاوتی دارد، پس امتحان‌کردن چند روش عادی است.</p></details>
+  <details><summary>Slow DNS چه می‌خواهد؟</summary><p>یک دامنه واگذار‌شده، کلید عمومی سرور و یک نقطه SOCKS5 روی سرور. این روش مستقل است و در Mix استفاده نمی‌شود.</p></details>
+  <details><summary>فایل OpenVPN را چطور اضافه کنم؟</summary><p>فایل <span dir="ltr">.ovpn</span> را از داخل اپ وارد کنید یا آن را از فایل‌منیجر با 4win VPN باز کنید. اگر نام کاربری و رمز در فایل نیست، داخل اپ وارد می‌شود.</p></details>
+  <details><summary>سورس اپ در دسترس است؟</summary><p>بله، سورس در گیت‌هاب قابل مشاهده است. توجه کنید که طبق README مجوز متن‌باز عمومی برای کد اپ ارائه نشده و حقوق آن محفوظ است.</p></details>
+  <details><summary>روی iOS یا ویندوز کار می‌کند؟</summary><p>خیر. پروژه فایل‌های فلاتر برای پلتفرم‌های دیگر دارد، اما قابلیت‌های VPN فقط برای اندروید مستند و پشتیبانی شده است.</p></details>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="dl">
+    <h2>آماده وصل شدن؟</h2>
+    <p class="lead">نسخه ۱.۴.۹ را بگیرید و هر روشی را که شبکه‌تان می‌پذیرد امتحان کنید.</p>
+    <div class="cta">
+      <a class="btn pri" href="https://github.com/4win-official/4win-VPN-Source/releases/download/v1.4.9/4winVPN_v1.4.9_universal.apk">⬇ دانلود APK نسخه ۱.۴.۹</a>
+      <a class="btn" href="https://github.com/4win-official/4win-VPN/releases">همه نسخه‌ها</a>
+    </div>
+    <p class="sm">اندروید ۷.۰ (API 24) و بالاتر</p>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>© 4win VPN</span>
+  <nav><a href="https://github.com/4win-official/4win-VPN-Source">سورس</a><a href="https://github.com/4win-official/4win-VPN/releases">نسخه‌ها</a><a href="https://github.com/4win-official/4win-VPN-Source/blob/main/docs/MIX.md">مستندات Mix</a><a href="https://github.com/4win-official/4win-VPN-Source/blob/main/docs/SLOW_DNS.md">مستندات Slow DNS</a></nav>
+</div></footer>
+
+<script>
+const P=[
+["Xray","اتصال با هسته Xray داخل اپ، با امکان تکه‌تکه‌کردن ClientHello در TLS.",["لینک VLESS، VMess، Trojan، Shadowsocks","سرور تکی یا گروه سابسکریپشن","تست تأخیر و انتخاب سرور سالم","حالت VPN یا پروکسی محلی"]],
+["Psiphon","تونل بومی Psiphon با انتخاب خودکار خروجی.",["بدون نیاز به لینک یا تنظیم","Kill Switch اختیاری","تقسیم تونل به‌ازای برنامه"]],
+["WARP","اتصال به Cloudflare WARP با لایه داده WireGuard داخل اپ.",["ثبت هویت دستگاه در اولین استفاده","کلید خصوصی روی همان دستگاه ساخته می‌شود و بیرون نمی‌رود","حالت VPN یا پروکسی محلی"]],
+["OpenVPN","اتصال با پروفایل OpenVPN وارد‌شده.",["وارد کردن فایل ovpn","نام کاربری و رمز داخل فایل یا داخل اپ","TCP یا UDP طبق خود پروفایل"]],
+["SSTP","اتصال با Secure Socket Tunneling Protocol.",["لیست سرور داخل اپ","یا سرور دلخواه در تنظیمات"]],
+["DNS Changer","تغییر DNS از طریق رابط VPN اندروید. پروتکل تونل کامل نیست.",["انتخاب سرور از لیست DNS","اسکنر DNS داخلی"]],
+["Proxy","عبور ترافیک از پروکسی بالادستی.",["SOCKS4، SOCKS5 و HTTP","لینک، host:port یا سابسکریپشن","تست TCP و تست باز شدن سایت از مسیر پروکسی"]],
+["Slow DNS","تونل dnstt روی TCP، از مسیر UDP DNS، DoT یا DoH.",["نیاز به دامنه، کلید عمومی و SOCKS5 سرور","فقط مستقل؛ در Mix نیست","اسکنر داخلی"]]];
+const tabs=document.getElementById('tabs'),panel=document.getElementById('panel');
+P.forEach((p,i)=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.textContent=p[0];b.onclick=()=>sel(i);tabs.append(b)});
+function sel(i){[...tabs.children].forEach((t,j)=>t.setAttribute('aria-selected',j===i));
+panel.innerHTML=`<div><h3>${P[i][0]}</h3><p>${P[i][1]}</p></div><ul>${P[i][2].map(x=>`<li>${x}</li>`).join('')}</ul>`;document.getElementById('proto').textContent=document.getElementById('pn').textContent=P[i][0]}
+sel(0);
+
+/* phone demo */
+const scr=document.getElementById('scr'),st=document.getElementById('st'),sub=document.getElementById('sub'),pg=document.getElementById('ping');let on=false,t=null,sec=0;
+document.getElementById('pbtn').onclick=()=>{on=!on;scr.classList.toggle('on',on);clearInterval(t);
+if(on){st.textContent='متصل';sec=0;pg.textContent=(60+Math.random()*90|0)+' ms';t=setInterval(()=>{sec++;sub.textContent=String(sec/60|0).padStart(2,'0')+':'+String(sec%60).padStart(2,'0')},1000);sub.textContent='00:00'}
+else{st.textContent='قطع';sub.textContent='برای دیدن نمونه لمس کنید';pg.textContent='—'}};
+
+/* mix lab */
+const B=["Xray","Proxy","WARP","SSTP","OpenVPN","Psiphon","DNS"];let ch=["WARP","Xray"];
+const chips=document.getElementById('chips'),chain=document.getElementById('chain'),out=document.getElementById('out');
+B.forEach(n=>{const b=document.createElement('button');b.className='chip';b.textContent='+ '+n;b.onclick=()=>{if(ch.length<6)ch.push(n);else out.textContent='در این نمونه حداکثر ۶ بلوک.';draw()};chips.append(b)});
+function draw(){out.className='out';chain.innerHTML='<span class="node start">گوشی</span>';
+ch.forEach((n,i)=>{chain.insertAdjacentHTML('beforeend','<span class="arr">←</span>');const s=document.createElement('span');s.className='node';s.textContent=n;s.title='حذف';s.onclick=()=>{ch.splice(i,1);out.textContent='';draw()};chain.append(s)});
+chain.insertAdjacentHTML('beforeend','<span class="arr">←</span><span class="node end">اینترنت</span>')}
+document.getElementById('run').onclick=async()=>{const ns=[...chain.querySelectorAll('.node:not(.start):not(.end)')];
+if(!ns.length){out.textContent='زنجیره خالی است. یک بلوک اضافه کنید.';return}
+ns.forEach(n=>n.classList.remove('ok'));out.className='out';
+for(let i=0;i<ns.length;i++){out.textContent='در حال تست '+ch[i]+'…';await new Promise(r=>setTimeout(r,520));ns[i].classList.add('ok')}
+out.className='out good';out.textContent='نمایش نمونه: در اپ واقعی، موفقیت فقط بعد از تست کامل زنجیره اعلام می‌شود.'};
+draw();
+</script>
 </body>
 </html>
