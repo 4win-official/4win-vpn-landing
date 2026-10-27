@@ -2,67 +2,183 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>4win VPN | وی‌پی‌ان رایگان برای اندروید</title>
 <meta name="description" content="4win VPN یک اپ رایگان برای اندروید با روش‌های اتصال متنوع، اسپلیت تانلینگ و به‌روزرسانی درون‌برنامه‌ای.">
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="4win VPN">
+<meta property="og:image" content="https://4win-official.github.io/4win-vpn-landing/4win%20VPN%20logo.png">
 <meta property="og:description" content="رایگان، ساده و با چند روش اتصال. همین حالا نصب کنید.">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%237ee8ff'/><text x='50' y='68' font-size='56' text-anchor='middle' fill='black' font-family='sans-serif' font-weight='900'>4</text></svg>">
-<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" media="print" onload="this.media='all'">
+<link rel="icon" type="image/png" href="4win%20VPN%20logo.png">
+<link rel="apple-touch-icon" href="4win%20VPN%20logo.png">
+<style>
+:root{--a:#7ee8ff;--v:#b69cff;--p:#ff9ccf;--mut:#ffffffa8;--ln:#ffffff38;--pad:clamp(16px,4vw,32px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip;max-width:100%;-webkit-text-size-adjust:100%}
+body{background:#000;color:#fff;font-family:"Vazirmatn",Tahoma,system-ui,sans-serif;line-height:1.9;overflow-x:clip;max-width:100%;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--a);outline-offset:3px;border-radius:14px}
+#water{position:fixed;inset:0;width:100%;height:100%;z-index:-1;opacity:.5;pointer-events:none}
+svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wrap{width:min(1100px,100% - var(--pad)*2);margin-inline:auto}
+section{padding:clamp(44px,9vw,96px) 0}
+h1,h2,h3{line-height:1.4;font-weight:800}
+h2{font-size:clamp(1.6rem,4.6vw,2.6rem);text-align:center;margin-bottom:10px}
+.sub{color:var(--mut);text-align:center;max-width:52ch;margin:0 auto clamp(24px,5vw,44px)}
+
+/* Liquid Glass (no heavy blur: background is pure black, so it would be invisible and only cost GPU) */
+.glass{--mx:50%;--my:0%;position:relative;isolation:isolate;overflow:hidden;border-radius:28px;
+ background:linear-gradient(145deg,#ffffff2e,#ffffff0b 45%,#ffffff18);border:1px solid var(--ln);
+ box-shadow:inset 0 1.5px 0 #ffffff70,inset 0 -1px 0 #ffffff14,inset 0 0 26px #ffffff10}
+.glass::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(120% 90% at 0 0,#7ee8ff30,transparent 55%),radial-gradient(90% 80% at 100% 100%,#b69cff30,transparent 60%)}
+.glass::after{content:"";position:absolute;top:0;left:14%;right:14%;height:1px;background:linear-gradient(90deg,transparent,#ffffffcc,transparent)}
+@media(hover:hover){
+ .hov::before{background:radial-gradient(240px circle at var(--mx) var(--my),#ffffff38,transparent 65%),radial-gradient(120% 90% at 0 0,#7ee8ff30,transparent 55%),radial-gradient(90% 80% at 100% 100%,#b69cff30,transparent 60%)}
+ .card{transition:transform .25s,border-color .25s}.card:hover{transform:translateY(-4px);border-color:#ffffff66}
+}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease-out,transform .6s ease-out;transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.no-js .rv{opacity:1;transform:none}
+
+/* nav */
+nav{position:sticky;top:calc(10px + env(safe-area-inset-top));z-index:50;margin:10px auto 0;width:min(1100px,100% - var(--pad)*2)}
+nav .glass{border-radius:99px;display:flex;align-items:center;justify-content:space-between;padding:8px 10px 8px 14px;min-height:58px;background:linear-gradient(145deg,#1b1b1fe6,#0c0c0ee6)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;padding-inline-start:10px}
+.logo img{width:38px;height:38px;border-radius:12px;object-fit:contain;display:block}
+.logo i{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;font-style:normal;font-weight:900;color:#001018;background:linear-gradient(135deg,var(--a),var(--v))}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 30px;border-radius:99px;font:inherit;font-weight:800;color:#fff;border:1px solid #ffffff55;background:linear-gradient(145deg,#ffffff3a,#ffffff10);box-shadow:inset 0 1.5px 0 #ffffff80;cursor:pointer;transition:transform .2s}
+.btn:active{transform:scale(.97)}
+@media(hover:hover){.btn:hover{transform:translateY(-2px)}}
+.btn.pri{color:#00121a;border:0;background:linear-gradient(135deg,#c8f6ff,var(--a) 45%,var(--v));box-shadow:inset 0 2px 0 #ffffffaa,0 8px 30px #7ee8ff4d}
+.btn.sm{padding:10px 22px;font-size:.92rem}
+.btn.big{padding:clamp(15px,3vw,19px) clamp(30px,6vw,48px);font-size:clamp(1.02rem,3vw,1.2rem)}
+.btn .i{font-size:1.25em}
+
+/* hero */
+.hero{padding:clamp(40px,9vw,90px) 0 16px;text-align:center}
+.pill{display:inline-flex;gap:8px;align-items:center;padding:7px 18px;border-radius:99px;font-size:.88rem;margin-bottom:24px}
+.pill b{width:8px;height:8px;border-radius:50%;background:var(--a);box-shadow:0 0 10px var(--a)}
+h1{font-size:clamp(2.2rem,9vw,5rem);margin-bottom:18px}
+h1 span{display:inline-block;padding:.3em .04em .12em;margin:-.3em 0 -.12em;background:linear-gradient(100deg,var(--a),var(--v) 55%,var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{color:var(--mut);font-size:clamp(1rem,2.8vw,1.15rem);max-width:46ch;margin:0 auto 26px}
+.free{display:inline-block;margin:0 0 26px;padding:9px 28px;border-radius:99px;font-weight:800;font-size:1.05rem}
+.free span{color:var(--a)}
+.cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.note{margin-top:14px;font-size:.85rem;color:var(--mut)}
+.stage{position:relative;height:clamp(150px,30vw,250px);margin-top:clamp(28px,6vw,56px)}
+.orb{position:absolute;display:grid;place-items:center;border-radius:50%!important;will-change:transform}
+.orb .i{animation:fl 7s ease-in-out infinite;stroke-width:1.5}
+@keyframes fl{50%{transform:translateY(-12px)}}
+
+/* chips marquee */
+.mq{overflow:hidden;direction:ltr;padding:6px 0;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq div{display:flex;gap:12px;width:max-content;animation:mq 36s linear infinite;will-change:transform}
+.mq span{padding:9px 22px;border-radius:99px;font-weight:700;white-space:nowrap;direction:rtl;background:linear-gradient(145deg,#ffffff26,#ffffff0d);border:1px solid var(--ln);box-shadow:inset 0 1px 0 #ffffff55}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,18px)}
+.card{padding:clamp(22px,3vw,30px) 24px}
+.ic{width:56px;height:56px;border-radius:19px;display:grid;place-items:center;font-size:1.7rem;margin-bottom:16px;background:#ffffff1a;border:1px solid #ffffff40;box-shadow:inset 0 1px 0 #ffffff70;color:var(--a)}
+.card h3{font-size:1.15rem;margin-bottom:6px}
+.card p{color:var(--mut);font-size:.96rem}
+.card.hl{grid-column:span 3;display:flex;gap:24px;align-items:center}
+.card.hl .ic{margin:0;flex:none;width:68px;height:68px;font-size:2.1rem}
+.card.hl h3{font-size:1.4rem}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,18px)}
+.step{padding:26px 22px;text-align:center}
+.num{display:grid;place-items:center;width:46px;height:46px;margin:0 auto 12px;border-radius:50%;font-weight:900;color:#00121a;background:linear-gradient(135deg,#c8f6ff,var(--v))}
+.step p{color:var(--mut);font-size:.96rem}
+.final{padding:clamp(36px,8vw,72px) 22px;text-align:center}
+footer{padding:30px 0 46px;text-align:center;color:var(--mut);font-size:.88rem}
+footer a{margin:0 12px;text-decoration:underline;text-underline-offset:4px}
+
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card.hl{grid-column:span 2}}
+@media(max-width:600px){
+ .grid,.steps{grid-template-columns:minmax(0,1fr)}.card.hl{grid-column:auto;flex-direction:column;text-align:center}
+ .glass{border-radius:24px}.cta .btn{width:100%}.logo span{display:none}.logo{padding-inline-start:4px}
+}
+@media(max-width:360px){h1{font-size:2rem}.pill{font-size:.8rem}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
 </head>
-<body>
-<nav><div class="glass">
-  <a class="logo" href="#top"><i>4</i>4win VPN</a>
+<body class="no-js">
+<canvas id="water" aria-hidden="true"></canvas>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+<symbol id="split" viewBox="0 0 24 24"><path d="M16 3h5v5M8 3H3v5M12 22v-8.3a4 4 0 0 0-1.2-2.8L3 3M15 9l6-6"/></symbol>
+<symbol id="refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8M3 3v5h5M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16M16 16h5v5"/></symbol>
+<symbol id="layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7zM2 12l10 5 10-5M2 17l10 5 10-5"/></symbol>
+<symbol id="palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".6"/><circle cx="17.5" cy="10.5" r=".6"/><circle cx="8.5" cy="7.5" r=".6"/><circle cx="6.5" cy="12.5" r=".6"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.17-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67H16c3.05 0 5.5-2.45 5.5-5.5C21.96 6 17.5 2 12 2z"/></symbol>
+<symbol id="chart" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 3 3 5-6"/></symbol>
+<symbol id="zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+<symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></symbol>
+<symbol id="dl" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+</defs></svg>
+
+<nav id="nav"><div class="glass">
+  <a class="logo" href="#top"><img src="4win%20VPN%20logo.png" alt="" width="38" height="38"><span>4win VPN</span></a>
   <a class="btn pri sm" href="https://github.com/4win-official/4win-VPN-Source/releases/download/v1.4.9/4winVPN_v1.4.9_universal.apk">نصب اپ</a>
 </div></nav>
 
 <header class="hero wrap" id="top">
-  <span class="pill glass"><b>●</b> نسخه ۱.۴.۹ برای اندروید</span>
-  <h1>اینترنت آزادتر،<br><span>کاملاً رایگان.</span></h1>
-  <p>با 4win VPN فقط یک بار اپ را نصب می‌کنید و هر وقت لازم بود وصل می‌شوید. بدون ثبت‌نام و بدون پرداخت.</p>
-  <div class="free glass">۱۰۰٪ <span>رایگان</span></div>
-  <div class="cta">
-    <a class="btn pri big" href="https://github.com/4win-official/4win-VPN-Source/releases/download/v1.4.9/4winVPN_v1.4.9_universal.apk">⬇ دانلود و نصب</a>
+  <span class="pill glass rv"><b></b>نسخه ۱.۴.۹ برای اندروید</span>
+  <h1 class="rv" style="--d:.06s">اینترنت آزادتر،<br><span>کاملاً رایگان.</span></h1>
+  <p class="lead rv" style="--d:.12s">با 4win VPN فقط یک بار اپ را نصب می‌کنید و هر وقت لازم بود وصل می‌شوید. بدون ثبت‌نام و بدون پرداخت.</p>
+  <div class="free glass rv" style="--d:.16s">۱۰۰٪ <span>رایگان</span></div>
+  <div class="cta rv" style="--d:.2s">
+    <a class="btn pri big" href="https://github.com/4win-official/4win-VPN-Source/releases/download/v1.4.9/4winVPN_v1.4.9_universal.apk"><svg class="i"><use href="#dl"/></svg>دانلود و نصب</a>
   </div>
-  <p class="note">اندروید ۷.۰ و بالاتر</p>
-  <div class="orbs" aria-hidden="true">
-    <div class="orb glass g" style="width:96px;height:96px;inset-inline-start:8%;top:30px">🔒</div>
-    <div class="orb glass g" style="width:140px;height:140px;left:50%;margin-left:-70px;top:0;animation-delay:-2s;font-size:2.4rem">🌐</div>
-    <div class="orb glass g" style="width:80px;height:80px;inset-inline-end:10%;top:46px;animation-delay:-4s">⚡</div>
+  <p class="note rv" style="--d:.24s">اندروید ۷.۰ و بالاتر</p>
+  <div class="stage" id="stage" aria-hidden="true">
+    <div class="orb glass" data-s="26" style="width:clamp(66px,14vw,108px);height:clamp(66px,14vw,108px);inset-inline-start:6%;top:30%;font-size:clamp(1.7rem,4vw,2.4rem)"><svg class="i"><use href="#lock"/></svg></div>
+    <div class="orb glass" data-s="-14" style="width:clamp(104px,22vw,168px);height:clamp(104px,22vw,168px);left:50%;margin-left:calc(clamp(104px,22vw,168px)/-2);top:0;font-size:clamp(2.6rem,6vw,4rem)"><svg class="i" style="animation-delay:-2s"><use href="#globe"/></svg></div>
+    <div class="orb glass" data-s="34" style="width:clamp(58px,12vw,90px);height:clamp(58px,12vw,90px);inset-inline-end:8%;top:44%;font-size:clamp(1.5rem,3.4vw,2.1rem)"><svg class="i" style="animation-delay:-4s"><use href="#zap"/></svg></div>
   </div>
 </header>
 
+<div class="mq" aria-hidden="true"><div>
+  <span>رایگان</span><span>اسپلیت تانلینگ</span><span>آپدیت درون‌برنامه‌ای</span><span>چند روش اتصال</span><span>تم‌های زیبا</span><span>بدون ثبت‌نام</span><span>شروع سریع</span>
+  <span>رایگان</span><span>اسپلیت تانلینگ</span><span>آپدیت درون‌برنامه‌ای</span><span>چند روش اتصال</span><span>تم‌های زیبا</span><span>بدون ثبت‌نام</span><span>شروع سریع</span>
+</div></div>
+
 <section><div class="wrap">
-  <h2>چرا 4win VPN؟</h2>
-  <p class="sub">ساده برای شروع، کامل برای وقتی که بیشتر لازم دارید.</p>
+  <h2 class="rv">چرا 4win VPN؟</h2>
+  <p class="sub rv">ساده برای شروع، کامل برای وقتی که بیشتر لازم دارید.</p>
   <div class="grid">
-    <div class="card glass hl"><div class="ic">🎁</div><div><h3>کاملاً رایگان</h3><p>بدون اشتراک، بدون محدودیت پولی و بدون ثبت‌نام. فقط نصب کنید و استفاده کنید.</p></div></div>
-    <div class="card glass"><div class="ic">🔀</div><h3>اسپلیت تانلینگ</h3><p>خودتان انتخاب کنید کدام برنامه‌ها با VPN کار کنند و کدام‌ها نه.</p></div>
-    <div class="card glass"><div class="ic">🔄</div><h3>آپدیت درون‌برنامه‌ای</h3><p>نسخه جدید که بیاید، خود اپ خبر می‌دهد و همان‌جا به‌روزرسانی می‌شود.</p></div>
-    <div class="card glass"><div class="ic">🧩</div><h3>چند روش اتصال</h3><p>اگر یک روش روی اینترنت شما جواب نداد، با یک لمس روش دیگری را امتحان کنید.</p></div>
-    <div class="card glass"><div class="ic">🎨</div><h3>تم‌های زیبا</h3><p>از لیکویید گلس تا تم‌های رنگی دیگر؛ ظاهر اپ را با سلیقه خودتان تنظیم کنید.</p></div>
-    <div class="card glass"><div class="ic">📊</div><h3>وضعیت اتصال</h3><p>مصرف اینترنت و وضعیت اتصال را همیشه جلوی چشم داشته باشید.</p></div>
-    <div class="card glass"><div class="ic">🚀</div><h3>شروع سریع</h3><p>راهنمای اولیه داخل اپ است؛ در چند لحظه آماده‌اید.</p></div>
+    <div class="card glass hov hl rv"><div class="ic"><svg class="i"><use href="#gift"/></svg></div><div><h3>کاملاً رایگان</h3><p>بدون اشتراک، بدون محدودیت پولی و بدون ثبت‌نام. فقط نصب کنید و استفاده کنید.</p></div></div>
+    <div class="card glass hov rv"><div class="ic"><svg class="i"><use href="#split"/></svg></div><h3>اسپلیت تانلینگ</h3><p>خودتان انتخاب کنید کدام برنامه‌ها با VPN کار کنند و کدام‌ها نه.</p></div>
+    <div class="card glass hov rv" style="--d:.06s"><div class="ic"><svg class="i"><use href="#refresh"/></svg></div><h3>آپدیت درون‌برنامه‌ای</h3><p>نسخه جدید که بیاید، خود اپ خبر می‌دهد و همان‌جا به‌روزرسانی می‌شود.</p></div>
+    <div class="card glass hov rv" style="--d:.12s"><div class="ic"><svg class="i"><use href="#layers"/></svg></div><h3>چند روش اتصال</h3><p>اگر یک روش روی اینترنت شما جواب نداد، با یک لمس روش دیگری را امتحان کنید.</p></div>
+    <div class="card glass hov rv"><div class="ic"><svg class="i"><use href="#palette"/></svg></div><h3>تم‌های زیبا</h3><p>از لیکویید گلس تا تم‌های رنگی دیگر؛ ظاهر اپ را با سلیقه خودتان تنظیم کنید.</p></div>
+    <div class="card glass hov rv" style="--d:.06s"><div class="ic"><svg class="i"><use href="#chart"/></svg></div><h3>وضعیت اتصال</h3><p>مصرف اینترنت و وضعیت اتصال را همیشه جلوی چشم داشته باشید.</p></div>
+    <div class="card glass hov rv" style="--d:.12s"><div class="ic"><svg class="i"><use href="#check"/></svg></div><h3>شروع سریع</h3><p>راهنمای اولیه داخل اپ است؛ در چند لحظه آماده‌اید.</p></div>
   </div>
 </div></section>
 
 <section><div class="wrap">
-  <h2>سه قدم تا اتصال</h2>
-  <p class="sub">کمتر از یک دقیقه.</p>
+  <h2 class="rv">سه قدم تا اتصال</h2>
+  <p class="sub rv">کمتر از یک دقیقه.</p>
   <div class="steps">
-    <div class="step glass"><h3>دانلود کنید</h3><p>روی دکمه نصب بزنید تا فایل اپ دانلود شود.</p></div>
-    <div class="step glass"><h3>نصب کنید</h3><p>فایل را باز کنید و اگر اندروید اجازه خواست، تأیید کنید.</p></div>
-    <div class="step glass"><h3>وصل شوید</h3><p>اپ را باز کنید و دکمه اتصال را بزنید.</p></div>
+    <div class="step glass rv"><div class="num">۱</div><h3>دانلود کنید</h3><p>روی دکمه نصب بزنید تا فایل اپ دانلود شود.</p></div>
+    <div class="step glass rv" style="--d:.08s"><div class="num">۲</div><h3>نصب کنید</h3><p>فایل را باز کنید و اگر اندروید اجازه خواست، تأیید کنید.</p></div>
+    <div class="step glass rv" style="--d:.16s"><div class="num">۳</div><h3>وصل شوید</h3><p>اپ را باز کنید و دکمه اتصال را بزنید.</p></div>
   </div>
 </div></section>
 
 <section><div class="wrap">
-  <div class="final glass">
+  <div class="final glass rv">
     <h2>همین حالا نصب کنید</h2>
-    <p class="sub">رایگان است و همیشه به‌روز می‌ماند.</p>
-    <a class="btn pri big" href="https://github.com/4win-official/4win-VPN-Source/releases/download/v1.4.9/4winVPN_v1.4.9_universal.apk">⬇ دانلود 4win VPN</a>
+    <p class="sub" style="margin-bottom:26px">رایگان است و همیشه به‌روز می‌ماند.</p>
+    <a class="btn pri big" href="https://github.com/4win-official/4win-VPN-Source/releases/download/v1.4.9/4winVPN_v1.4.9_universal.apk"><svg class="i"><use href="#dl"/></svg>دانلود 4win VPN</a>
   </div>
 </div></section>
 
@@ -70,5 +186,36 @@
   <a href="https://github.com/4win-official/4win-VPN-Source">سورس در گیت‌هاب</a>
   <a href="https://github.com/4win-official/4win-VPN/releases">همه نسخه‌ها</a>
 </footer>
+
+<script>
+(function(){
+document.body.classList.remove('no-js');
+var rm=matchMedia('(prefers-reduced-motion:reduce)').matches,fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+/* water seen from above: tiny low-res caustic shader, upscaled by CSS */
+var cv=document.getElementById('water'),cx=cv.getContext('2d'),W,H,img,TAU=6.2831853,last=0;
+function size(){var k=innerWidth<700?7:5;H=Math.ceil(innerHeight/k);W=Math.ceil(innerWidth/k);cv.width=W;cv.height=H;img=cx.createImageData(W,H)}
+function draw(t){var d=img.data,i=0,x,y,n;
+ for(y=0;y<H;y++)for(x=0;x<W;x++){
+  var px=((x/H*TAU*1.4)%TAU)-250,py=((y/H*TAU*1.4)%TAU)-250,ix=px,iy=py,c=1;
+  for(n=0;n<4;n++){var tt=t*(1-3.5/(n+1)),nx=px+Math.cos(tt-ix)+Math.sin(tt+iy),ny=py+Math.sin(tt-iy)+Math.cos(tt+ix);ix=nx;iy=ny;
+   c+=1/Math.hypot(px/(Math.sin(ix+tt)/.005),py/(Math.cos(iy+tt)/.005))}
+  c=1.17-Math.pow(c/4,1.4);var v=Math.pow(Math.abs(c),8);if(v>1)v=1;
+  d[i++]=v*80;d[i++]=v*200;d[i++]=v*255;d[i++]=255}
+ cx.putImageData(img,0,0)}
+function loop(ts){if(!document.hidden&&ts-last>48){last=ts;draw(ts/2400+23)}requestAnimationFrame(loop)}
+size();draw(23);addEventListener('resize',function(){size();draw(23)});
+if(!rm)requestAnimationFrame(loop);
+if(!fine||rm)return; /* mobile: no pointer effects at all, keeps it smooth */
+document.querySelectorAll('.hov').forEach(function(g){
+ g.addEventListener('pointermove',function(e){var r=g.getBoundingClientRect();g.style.setProperty('--mx',(e.clientX-r.left)+'px');g.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true});
+});
+var orbs=[].slice.call(document.querySelectorAll('.orb')),tick=false,mx=0,my=0;
+function upd(){tick=false;orbs.forEach(function(o){var s=+o.dataset.s;o.style.transform='translate3d('+(mx*s)+'px,'+(my*s)+'px,0)'})}
+addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});
+})();
+</script>
 </body>
 </html>
